@@ -1,0 +1,54 @@
+
+import json
+
+
+# def slack_events():
+#     # Verify the request by comparing the verification token in the request to your app's token
+#     if request.form.get('token') == os.environ('SLACK_BOT_TOKEN'):
+#         # Parse the incoming JSON payload from Slack
+#         payload = json.loads(request.form.get('payload'))
+#         # Handle the incoming event as necessary
+#         if payload['event']['type'] == 'message' and payload['event']['channel_type'] == 'im':
+#             # Call your function to open the popup
+#             open_popup(payload['event']['user'], payload['trigger_id'])
+#         # Send a response back to Slack indicating that you received the event
+#         return jsonify({'status': 'success'})
+#     else:
+#         # If the verification token doesn't match, return an error
+#         return jsonify({'status': 'error'})
+
+# def open_popup(user_id, trigger_id):
+#     try:
+#         # Define the contents of the popup view
+#         view = {
+#             "type": "modal",
+#             "title": {
+#                 "type": "plain_text",
+#                 "text": "My Popup"
+#             },
+#             "blocks": [
+#                 {
+#                     "type": "section",
+#                     "text": {
+#                         "type": "mrkdwn",
+#                         "text": "Hello, this is my popup!"
+#                     }
+#                 }
+#             ],
+#             "close": {
+#                 "type": "plain_text",
+#                 "text": "Close"
+#             }
+#         }
+        
+#         # Call the views.open method with the user ID and trigger ID
+#         response = client.views_open(
+#             trigger_id=trigger_id,
+#             view=view,
+#             # The user ID is optional, but including it limits the popup to only being shown to that user
+#             # user_id=user_id 
+#         )
+#         print(f"Popup opened: {response}")
+        
+#     except SlackApiError as e:
+#         print("Error opening popup: {}".format(e))
