@@ -20,14 +20,52 @@ BOT_ID = client.api_call("auth.test")['user_id']
 #recognises the message event
 @slack_event_adapter.on('message')
 #payload is the data on message that was sent
+
+
 def message(payload):
     event = payload.get('event', {})
     channel_id = event.get('channel')
     user_id = event.get('user')
     text = event.get('text')
     found = False
+
     if BOT_ID != user_id:
-        if "JS" in text:
+        #if the acronym is found in text found = True
+
+
+
+
+    
+    
+        if text == "BUTTONS":
+            message_to_send = {"channel": channel_id, "blocks": [
+            {
+                "type": "section",
+                "text": {
+                        "type": "plain_text",
+                        "text": "Block has been triggered.",
+                        "emoji": True
+                        }
+                },
+		{
+			"type": "actions",
+			"elements": [
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "OK",
+						"emoji": True
+					},
+					"value": "click_me_123",
+					"action_id": "actionId-0"
+				}
+			]
+		}
+	]
+}
+            client.chat_postMessage(**message_to_send)
+        if " JS " in text or text == "JS":
             meaning = "JavaScript: JavaScript is a high-level programming language used for both client-side and server-side web development. "
             found = True
         elif "API" in text:
