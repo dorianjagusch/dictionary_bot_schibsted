@@ -1,0 +1,12 @@
+{
+	"CS": "Computer Science",
+	"OOP": "Object-Oriented",
+	"IDE": "Integrated Development Environment",
+	"API": "Application Programming Interface",
+	"DBMS": "Database Management System",
+	"GUI": "Graphical User Interface",
+	"HTTP": "Hypertext Transfer Protocol",
+	"SQL": "Structured Query Langage",
+	"JVM": "Java Virtual Machine",
+	"PEP": "Python Enhancement Proposoal"
+}
