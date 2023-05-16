@@ -49,6 +49,7 @@ Start coding:
 - Install any other required libraries by running pip3 install <library_name>
 Connect to Slack:
 - Find the environment path and connect to Slack with your tokens.
+- Use Slack Bolt to handle events from Slack, specifically listening for app_mention events triggered when the bot is mentioned.
 - Create a Slack Event Adapter using the Slack signing secret and /slack/events endpoint to receive events from Slack and pass them to Slack Bolt.
 - To make the Slack bot running, you need a server, a possible provider is ngrok.
 - Create an account on ngrok and set up your personalized token.
@@ -57,12 +58,13 @@ Connect to Slack:
 
 ## The integration between Slack and ChatGPT is achieved through the following components:
 ```
-Besies Slack API, Slack Bolt, Flask:
+Assuming the Slackbot above is implemented, only the differences are mentioned below:
+Besides Slack API, Slack Bolt, Flask:
 ChatGPT: OpenAI's advanced language model used to generate responses based on user prompts.
 Implementation Steps:
 
-Import necessary libraries and dependencies.
-Set up the environment variables using a .env file.
+Import additional necessary libraries and dependencies.
+Add OpenAI API key to .env file.
 Configure the Flask app, including SSL context creation for secure connections.
 Set up Slack integration by creating a WebClient instance with the Slack bot token.
 Use Slack Bolt to handle events from Slack, specifically listening for app_mention events triggered when the bot is mentioned.
@@ -73,8 +75,6 @@ Create a Slack Event Adapter using the Slack signing secret and /slack/events en
 Establish a connection between the chatbot and Slack using Socket Mode handler with the app token and Slack Bolt app.
 Start the Flask app with app.run() method, specifying debug mode and port to listen on. Start the Slack Event Adapter to handle incoming events from Slack.
 Usage:
-
-Add OpenAI API key to .env file.
 Start the Flask app.
 Invite the chatbot to the desired Slack channel(s) where it should listen for messages.
 ```
