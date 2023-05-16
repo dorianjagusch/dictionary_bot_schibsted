@@ -48,7 +48,8 @@ Start coding:
 - Create a Python file and install the required libraries and packages:
 - pip3 install slackclient (to connect to Slack)
 - pip3 install python-dotenv (to read from the .env file)
-- Install any other required libraries by running pip3 install <library_name>
+- Install any other required libraries by running pip3 install <library_name> on Mac/Linux 
+- (for Windows pip install <library name> suffices)
 
 Connect to Slack:
 - Find the environment path and connect to Slack with your tokens.
@@ -59,7 +60,7 @@ Connect to Slack:
 - Run: ngrok config add-authtoken <token>
 - Run: ngrok http <your_local_port>
   
-  ## The integration between Slack and ChatGPT is achieved through the following components:
+  ## The integration between Slack and ChatGPT would be achieved through the following components:
  
 - Assuming the Slackbot above is implemented, only the differences are mentioned below:
 - Besides Slack API, Slack Bolt, Flask:
