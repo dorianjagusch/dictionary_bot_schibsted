@@ -57,24 +57,24 @@ Connect to Slack:
 - Run: ngrok http <your_local_port>
 
 ## The integration between Slack and ChatGPT is achieved through the following components:
-```
-Assuming the Slackbot above is implemented, only the differences are mentioned below:
-Besides Slack API, Slack Bolt, Flask:
-ChatGPT: OpenAI's advanced language model used to generate responses based on user prompts.
+
+- Assuming the Slackbot above is implemented, only the differences are mentioned below:
+- Besides Slack API, Slack Bolt, Flask:
+- ChatGPT: OpenAI's advanced language model used to generate responses based on user prompts.
 Implementation Steps:
 
-Import additional necessary libraries and dependencies.
-Add OpenAI API key to .env file.
-Configure the Flask app, including SSL context creation for secure connections.
-Set up Slack integration by creating a WebClient instance with the Slack bot token.
-Use Slack Bolt to handle events from Slack, specifically listening for app_mention events triggered when the bot is mentioned.
-Define a function to handle app_mention events, extracting the user's input prompt, sending a confirmation message, generating a response with ChatGPT, and sending it back to the Slack channel.
-Create additional Flask endpoints for specific actions, such as handling acronyms.
-Use SlackRequestHandler from Slack Bolt to process incoming requests from Slack, integrated with the Flask app.
-Create a Slack Event Adapter using the Slack signing secret and /slack/events endpoint to receive events from Slack and pass them to Slack Bolt.
-Establish a connection between the chatbot and Slack using Socket Mode handler with the app token and Slack Bolt app.
-Start the Flask app with app.run() method, specifying debug mode and port to listen on. Start the Slack Event Adapter to handle incoming events from Slack.
+- Import additional necessary libraries and dependencies.
+- Add OpenAI API key to .env file.
+- Configure the Flask app, including SSL context creation for secure connections.
+- Set up Slack integration by creating a WebClient instance with the Slack bot token.
+- Use Slack Bolt to handle events from Slack, specifically listening for app_mention events triggered when the bot is mentioned.
+- Define a function to handle app_mention events, extracting the user's input prompt, sending a confirmation message, generating a response with ChatGPT, and sending it back to the Slack channel.
+- Create additional Flask endpoints for specific actions, such as handling acronyms.
+- Use SlackRequestHandler from Slack Bolt to process incoming requests from Slack, integrated with the Flask app.
+- Create a Slack Event Adapter using the Slack signing secret and /slack/events endpoint to receive events from Slack and pass them to Slack Bolt.
+- Establish a connection between the chatbot and Slack using Socket Mode handler with the app token and Slack Bolt app.
+- Start the Flask app with app.run() method, specifying debug mode and port to listen on. Start the Slack Event Adapter to handle incoming events from Slack.
 Usage:
-Start the Flask app.
-Invite the chatbot to the desired Slack channel(s) where it should listen for messages.
-```
+- Start the Flask app.
+- Invite the chatbot to the desired Slack channel(s) where it should listen for messages.
+
