@@ -6,27 +6,28 @@ from flask import Flask, request, Response
 import slack
 from dotenv import load_dotenv
 import certifi
-import shlex
+from shlex import split
 #event handler
 from slackeventsapi import SlackEventAdapter
 
+# construct and load the environment
 env_path = Path('.') / '.env'
 load_dotenv(dotenv_path=env_path)
-app = Flask(__name__) #configures flask app
-slack_event_adapter = SlackEventAdapter(os.environ['SLACK_SIGNING_SECRET'],'/slack/events',app)
-#need more research into SSL
+app = Flask(__name__) # configures flask app
+slack_event_adapter = SlackEventAdapter(os.environ['SLACK_SIGNING_SECRET'],'/slack/events',app) # Load signing secret
+# set connection encryption
 ssl_context = ssl.create_default_context(cafile=certifi.where())
 client = slack.WebClient(token=os.environ['SLACK_BOT_TOKEN'], ssl=ssl_context)
-#below gets us the user id of api
+# Get user ID of the bot
 BOT_ID = client.api_call("auth.test")['user_id']
-#adds new endpoint
 
 
-#200 us okay 404 but a positive
+# The differenct slack commands reqiure their individual endpoints on the server
+# So we first we identify the endpoint to ping with the HTML POST method
+# and then execute the associated method 
 @app.route('/acro-help', methods=['POST'])
 def acro_help():
     data = request.form
-    channel_id = data.get('channel_name')
     help_text = {
         'channel': data.get('user_id'),
         'blocks': [{
@@ -43,14 +44,14 @@ def acro_help():
             'text': {
                 'type': "mrkdwn",
                 'text': (
-                    '*/acro <acronym>*:\n\tTo view definition of <acronym>\n\n'
+                    '*/acro <acronym1> [<acronym2> ...]*:\n\tTo view definition(s) of <acronym1> [<acronym2>]\n\n'
+                    '*/acro-help*\n\t to receive this very message\n\n'
                     '*/acro-add <acronym><meaning>*\n\t to add definition in quotes\n\n'
-                    '*/acro-del <acronym>*\n\t to remove definition also multiple\n\n'
+                    '*/acro-del <acronym> [<acronym2> ...]*\n\t to remove a definition. Simultaneous removal of multiple terms is possible\n\n'
                     '*/acro ChatGPT <acronym>*\n\t would one day link to ChatGPT'
                 )
             }
-            }
-        ]
+        }]
     }
     client.chat_postMessage(**help_text)
     return Response(), 200
@@ -112,4 +113,4 @@ def acro_del():
 
 #runs app on default port if we want to change the port app.run(debug=True, port=portnum)
 if __name__ == "__main__":
-    app.run(debug=True, port=5005)
+    app.run(debug=True, port=5000)
