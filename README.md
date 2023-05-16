@@ -58,15 +58,13 @@ Connect to Slack:
 - Create an account on ngrok and set up your personalized token.
 - Run: ngrok config add-authtoken <token>
 - Run: ngrok http <your_local_port>
-
-## The integration between Slack and ChatGPT is achieved through the following components:
-
+  
+  ## The integration between Slack and ChatGPT is achieved through the following components:
+ 
 - Assuming the Slackbot above is implemented, only the differences are mentioned below:
 - Besides Slack API, Slack Bolt, Flask:
   ChatGPT: OpenAI's advanced language model used to generate responses based on user prompts.
-
   Implementation Steps:
-
 - Import additional necessary libraries and dependencies.
 - Add OpenAI API key to .env file.
 - Configure the Flask app, including SSL context creation for secure connections.
